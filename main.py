@@ -109,3 +109,25 @@ def main():
                     posicoes_estrelas.append(posicao)
 
         tela.blit(imagem_fundo, (0, 0))
+
+        # Marcações
+        for posicao, nome in marcacoes.items():
+            # Gerar uma cor aleatória
+            cor_estrela = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)) 
+            pygame.draw.circle(tela, cor_estrela, posicao, 10)
+            texto = fonte.render(nome, True, BRANCO)
+            tela.blit(texto, (posicao[0] + 15, posicao[1] - 7))
+        
+        #Desenhar linhas entre as estrelas
+        desenhar_linhas()
+        
+        #Exibir instruções na tela
+        texto_comandos = fonte.render("F10: Salvar Estrelas      F11: Carregar Estrelas      F12: Deletar Estrelas", True, BRANCO)
+        tela.blit(texto_comandos, (10, 10))
+            
+        pygame.display.flip()
+        relogio.tick(60)
+
+    pygame.quit()
+
+main()
