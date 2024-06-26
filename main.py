@@ -25,3 +25,11 @@ posicoes_estrelas = []
 BRANCO = (255, 255, 255)
 PRETO = (0, 0, 0)
 
+#Nome da estrela
+def obter_nome_estrela():
+    root = tk.Tk()
+    root.withdraw()
+    nome_estrela = simpledialog.askstring("Input", "Nome da Estrela:", parent=root)
+    root.destroy()
+    return nome_estrela if nome_estrela else "Desconhecido"
+
