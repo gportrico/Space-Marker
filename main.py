@@ -80,3 +80,32 @@ def excluir_marcacoes_e_arquivo():
     limpar_tela()
     if os.path.exists("assets/marcacoes.json"):
         os.remove("assets/marcacoes.json")
+
+#Função Principal
+def main():
+    rodando = True
+    relogio = pygame.time.Clock()
+
+    while rodando:
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                salvar_marcacoes()
+                rodando = False
+            elif evento.type == pygame.KEYDOWN:
+                if evento.key == pygame.K_ESCAPE:
+                    salvar_marcacoes()
+                    rodando = False
+                elif evento.key == pygame.K_F10:
+                    salvar_marcacoes()
+                elif evento.key == pygame.K_F11:
+                    carregar_marcacoes()
+                elif evento.key == pygame.K_F12:
+                    excluir_marcacoes_e_arquivo()
+            elif evento.type == pygame.MOUSEBUTTONDOWN:
+                if evento.button == 1:  
+                    posicao = pygame.mouse.get_pos()
+                    nome_estrela = obter_nome_estrela()
+                    marcacoes[posicao] = nome_estrela
+                    posicoes_estrelas.append(posicao)
+
+        tela.blit(imagem_fundo, (0, 0))
