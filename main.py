@@ -81,6 +81,12 @@ def excluir_marcacoes_e_arquivo():
     if os.path.exists("assets/marcacoes.json"):
         os.remove("assets/marcacoes.json")
 
+#Desenhar linhas entre as estrelas
+def desenhar_linhas():
+    if len(posicoes_estrelas) > 1:
+        for i in range(len(posicoes_estrelas) - 1):
+            pygame.draw.line(tela, BRANCO, posicoes_estrelas[i], posicoes_estrelas[i + 1], 2)
+
 #Função Principal
 def main():
     rodando = True
@@ -118,10 +124,10 @@ def main():
             texto = fonte.render(nome, True, BRANCO)
             tela.blit(texto, (posicao[0] + 15, posicao[1] - 7))
         
-        #Desenhar linhas entre as estrelas
+        # Desenhar linhas entre as estrelas
         desenhar_linhas()
         
-        #Exibir instruções na tela
+        # Exibir instruções na tela
         texto_comandos = fonte.render("F10: Salvar Estrelas      F11: Carregar Estrelas      F12: Deletar Estrelas", True, BRANCO)
         tela.blit(texto_comandos, (10, 10))
             
